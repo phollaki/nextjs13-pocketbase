@@ -26,15 +26,15 @@ app/(marketing) <- ignored by routing system, cannot access by http://localhost:
 - template.tsx
 - head.tsx
 
-<img src="./assets/reserved-files.png"/>
+<img src="./markdown-next13/assets/reserved-files.png"/>
 
 
 #### Use new build tool Turbopack
 Webpack written in Rust - Currently in Alpha
 
-![Alt text](image.png)
+![Alt text](./markdown-next13/image.png)
 
-![Alt text](image-1.png)
+![Alt text](./markdown-next13/image-1.png)
 
 
 ### Layouts
@@ -70,7 +70,7 @@ export default function RootLayout({
 ```
 
 Layouts can be nested:
-![Alt text](image-2.png)
+![Alt text](./markdown-next13/image-2.png)
 
 
 ### Route with Link component
@@ -188,7 +188,7 @@ const Note = ({note}: any) => {
 ```
 
 On /notes page:
-![Alt text](image-3.png)
+![Alt text](./markdown-next13/image-3.png)
 
 
 ### <b style="color:red;">!Important to Know!</b>
@@ -272,7 +272,7 @@ const res = await fetch(`http://127.0.0.1:8090/api/collections/notes/records/${n
 
 If we want to prerender a page, then use generateStaticParams. Its an equivalent function of getStaticPaths & previous versions of Next.
 
-![Alt text](image-4.png)
+![Alt text](./markdown-next13/image-4.png)
 
 
 ## Loading State
@@ -331,7 +331,7 @@ export default function Error({
   )
 }
 ```
-![Alt text](image-5.png)
+![Alt text](./markdown-next13/image-5.png)
 
 
 ## Mutate data with Next Client components
