@@ -599,3 +599,65 @@ const a = await fetch('things', {cache: 'no-store'} // highly dynamic data
 const a = await fetch('things', { revalidate: 420 } // for everything between - number of seconds
 ```
 
+# Auth JS
+
+Universal opensource authentication system for the web.
+
+Traditionally developers has to store some kind of password hash in the database. Hackers can some time obtain entire database filled with passwords. But worst of all, they are annoying for end user.
+
+
+Auth js provides tools to implement passwordless strategies for sign in such as:
+- Email link sign in
+- Oauth
+- Own custom logic - phone sms verification
+
+And does so a way it can be run in any server environment, can used with any modern frontend framework and it can connect to any database.
+
+When the user signs in the default behaviour is to generate a jwt token which is stored client side. 
+However we can also store them server side in the database too.
+
+To get started install it to next:
+```js
+npm i next-auth
+```
+Then add an api route that export our configuration
+<img width="911" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/9d9f2c69-6b0d-4844-8b86-c5a851b5e4f3">
+<img width="641" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/95ec51ab-b64c-4708-9eed-8aad21431767">
+<img width="803" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/9e58da63-346e-49db-883e-4cfbfa43a13b">
+
+Then add a session provider to the root of our application. 
+Any child component can take advantage to the useSession hook to listen to updates to a user in real time.
+In addition it provides functions like sign in - sign out that can take the user to a dedicated page with the sign in provider.
+
+On server side we can check the auth state with the getServerSession() hook.
+
+# Prisma
+
+An open source tool that makes it fun work with database.
+
+Prisma is like Sequelize an ORM that adresses similar problems but in a different way.
+It has its own declarative schema definition language.
+
+Can create schema from Postgres or Sqlite database, then creates type definitions to make data models type safety.
+
+To get started, run 
+```js
+npx prisma init
+```
+
+This creates an .env file where we can add our database url & a prisma directory to define the schema.
+
+If the existing database already has data we can run:
+```js
+npx prisma db pull
+```
+So prisma can autogenerate the schema from it. Each table represented with a model keyword.
+
+If we modify our data, sql database can be modified automatically by prisma:
+```js
+npx prisma init
+```
+To interact the database with the server we tell prisma to generate the client library.
+```js
+npx prisma generate
+```
