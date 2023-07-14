@@ -483,3 +483,86 @@ API routes always run on server side, by default on nodejs runtime. We can chang
 ```js
 export const runtime = 'edge'
 ```
+
+## SEO
+Server side components are useful for SEO because they build and rendered on a server so crawlers can detect our content easier & faster.
+By default all NextJS component server component.
+
+If we want to use interactivity on the page, like user click event or any useState, useEffect hook, we need to flag our component with 'use client' to make it a client component. If we would like to use client side features in a server side component it will throw us an error.
+
+The solution is to move our interactive code into its own client side component.
+
+<img width="492" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/2ad80088-f5fd-4ee3-9c0e-2a21895b00c2">
+
+<img width="595" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/89469ff2-b20f-4354-a9df-c253288a53db">
+
+<img width="486" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/99609152-4ebe-4e0f-9fbe-6a91b116e27f">
+
+Nextjs automatically try to cache all pages by analyzing our data fetching code.
+
+To change this behaviour we can change the dynamic option from 'auto' to 'force-dynamic'.
+
+```js
+// export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-static'
+
+export default function Home(){
+  return (
+    <main>
+    </main>
+  )
+}
+```
+
+It will behave like GetServerSideProps (SSR) that always use SSR without caching. Thats good for pages that rely on data that changes very often.
+
+OR
+
+to force-static which will tell to cache the page in definitly. That would be ideal for a page where data never changes. 
+
+
+There is also a revalidate option that allows to set certain time to revalidate and refetch the page, then it can be cached until the next validation.
+```js
+export const revalidate = 3000;
+
+export default function Home(){
+  return (
+    <main>
+    </main>
+  )
+}
+```
+
+Its good to know these options, but most of the times the best to let nextjs figure out and define it to us.
+
+One other feature is metadata that good for SEO purpouses. This can be done in any pages or layout files in our app directory. 
+```js
+export const metadata = {
+  title: 'Hi Mom',
+  description: 'I am the best developer ever!',
+}
+
+export default function Home(){
+  return (
+    <main>
+    </main>
+  )
+}
+```
+
+For dynamic metadata, use generateMetadata function that creates our data on the fly:
+```
+export async function generateMetadata({params}:any) {
+  return {
+    title: '...',
+  }
+}
+
+export default function Home(){
+  return (
+    <main>
+    </main>
+  )
+}
+```
