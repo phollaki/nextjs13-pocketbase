@@ -75,6 +75,51 @@ Layouts can be nested:
 
 ### Route with Link component
 
+```js
+<Link href="/notes">Notes</Link>
+```
+
+Link component is basically an <a html tag with a more sophisticated way of routing. It does not make a full page reload. In addition we can route with useRouter next/router hook.
+
+```js
+import { useRouter } from 'next/router)
+router = useRouter()
+
+const someEvent = () => {
+  router.push('/something')
+  router.back()
+  router.reload()
+}
+```
+
+
+Dynamic routes needs a param, like id. [id]. We can get the params from a nextjs Page props. 
+```js
+export default function Home({params}):Props {
+  const res = await fetch(`https://.../api/${params.id}`)
+}
+```
+
+Routes can have many segments, if we need a catch-all route we should use ... spread syntax [...id]
+
+### Route groups
+To create a route group wrap route folder into a parenthesis. This url does not effect url structure.
+<img width="403" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/ca005aec-bd4b-4da3-b848-8f7ff2c25232">
+
+### Parralell routing
+@pro
+@basic
+
+Create a named slot that can access in a parent layout.
+<img width="652" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/75370ab3-032e-4789-b806-dd9d72c76dcd">
+
+### Intercepting routes
+This route will render the default page for SSR(server side rendering) but then a totally different page for CSR(client side rendering).
+<img width="695" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/12ddf91d-70af-42c8-992f-5d5563fa25fe">
+<img width="632" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/6fa5e983-da79-4e90-a4e9-28d1dd741380">
+
+
+
 First, create a Link that goes to /notes route.
 
 ```js
