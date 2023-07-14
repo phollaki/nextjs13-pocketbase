@@ -39,6 +39,15 @@ Webpack written in Rust - Currently in Alpha
 
 ### Layouts
 
+By default our application has a root layout in app folder -> app/layout.tsx. 
+
+Layouts can be nested:
+<img width="310" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/1ac8e0d0-c0a9-4f00-9fb8-ab39e7df0b97">
+
+Layouts can be used for data fetching, which can be usefull if we use the same data on multiple routes.
+
+Layouts works like a page, they look all similar to pages but layouts does not re-render. In some cases it can be problematic. To handle that we can use a template.tsx file instead of a layout file. It works in the same way BUT it re-mount the component on each navigation.
+
 Create a layout.tsx file, it should contain navbar & footer.
 
 
