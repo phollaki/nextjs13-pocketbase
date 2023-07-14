@@ -445,3 +445,32 @@ Note: use next useRouter from next/navigation then refresh the page after a note
     router.refresh()
   }
 ```
+
+## Route handlers
+
+Most of our routes in nextjs has a page.tsx file to render some component on the client, but if we need only api calls we can create a route handler by create a route.ts file in the route folder.
+
+Route is a lowest level primitive that can not used in the same directory with pages.tsx
+
+That file can export 1 or more functions with name - HTTP request methods.
+
+export a default function named:
+- GET
+- POST
+- DELETE
+- PUT
+- PATCH
+- HEAD
+- OPTIONS
+
+Each endpoint gets a request object and have to return a response. 
+<img width="398" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/2ec48ef7-e0e1-450a-8c47-53c95ead3930">
+
+### Next response extended api
+Next optionally extends request and response apis. Which can make easier our life if we want to response json().
+<img width="488" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/cfd1372a-f35a-42de-8a37-adfe150f294d">
+
+API routes always run on server side, by default on nodejs runtime. We can change runtime with 
+```js
+export const runtime = 'edge'
+```
