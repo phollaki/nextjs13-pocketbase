@@ -552,7 +552,7 @@ export default function Home(){
 ```
 
 For dynamic metadata, use generateMetadata function that creates our data on the fly:
-```
+```js
 export async function generateMetadata({params}:any) {
   return {
     title: '...',
@@ -566,3 +566,36 @@ export default function Home(){
   )
 }
 ```
+
+
+## Data fetching
+
+We don't need to use getServersideProps getStaticProps anymore in nextjs13. The new version of next uses Server side components that can be Async components. It means we can fetch any data in the component from the server, await them and pass down or render it for the user.
+
+```js
+export default async function Home(){
+  const a = await prisma.getMany();
+
+  const b = await firebase.getDoc();
+
+  const c = await fetch('...');
+
+  return (
+    <main>
+    </main>
+  )
+}
+```
+
+With this, Not only better developer experiences, but huge performance increase too.
+For example, if we have 2 nested layouts in a page each one does its own data fetching. Instead of fetching data 1 by 1 it can fetch them in parralell. Which can dramatically improve the rendering time and time to interactive to a webpage. 
+<img width="597" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/ede8d2ec-4044-4511-b9b4-7d85bff93394">
+
+Nextjs uses automatic deduping for fetch api, that means it checks all the fetches with the same input. Which means developers don't have to worry making unneccecary fetch calls or network usage. In addition we can add next options to fetch requests like caching behaviours or revalidation.
+
+```js
+const a = await fetch('things', {cache: 'force-cache'} // static data
+const a = await fetch('things', {cache: 'no-store'} // highly dynamic data
+const a = await fetch('things', { revalidate: 420 } // for everything between - number of seconds
+```
+
