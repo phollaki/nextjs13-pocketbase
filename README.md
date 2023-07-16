@@ -174,6 +174,8 @@ export default async function NotesPage = () => {
 
 ### Server - Client components
 
+<img width="737" alt="image" src="https://github.com/phollaki/nextjs13-pocketbase/assets/60651308/e4dc169c-5106-46ed-8131-449232528958">
+
 Nextjs components are server components by default. Which means they get rendered on the server, we can do data fetching on the server & Render result on Client components || Server components
 
 ```js
